@@ -1,7 +1,7 @@
 const express= require('express')
 const app = express();
 app.use(express.json())
-
+require('dotenv').config()
 function getCurrentUTCTimeWithValidation() {
   const currentTime = new Date().getTime(); // Get current time in milliseconds
   const twoSeconds = 2 * 1000; // Convert 2 seconds to milliseconds
@@ -35,5 +35,6 @@ app.get('/profile',(req,res)=>{
     "status":status
   })
 })
+const port = process.env.Port;
 
-app.listen(5500,()=>console.log('Serverrunning on port 5500'))
+app.listen(port,()=>console.log(`Server running on port ${port}`))
