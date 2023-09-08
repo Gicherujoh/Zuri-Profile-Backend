@@ -1,26 +1,5 @@
 const express= require('express')
 const app = express();
-/*
-Create and host an endpoint using any programming language of your choice.
-The endpoint should take two GET request query parameters and return specific information in JSON format.
-Slack name
-Current day of the week
-Current UTC time (with validation of +/-2)
-Track
-The GitHub URL of the file being run
-The GitHub URL of the full source code.
-A  Status Code of Success
-{
-  "slack_name": "example_name",
-  "current_day": "Monday",
-  "utc_time": "2023-08-21T15:04:05Z",
-  "track": "backend",
-  "github_file_url": "https://github.com/username/repo/blob/main/file_name.ext",
-  "github_repo_url": "https://github.com/username/repo",
-  "status_code": 200
-}
- */
-
 app.use(express.json())
 
 function getCurrentUTCTimeWithValidation() {
@@ -51,6 +30,7 @@ app.get('/profile',(req,res)=>{
     "current_day":today,
     "utc_time":currentUTCTime,
     "track":req.query.track,
+    "github_file_url":"https://github.com/Gicherujoh/Zuri-Profile-Backend/blob/master/App.js",
     "github_repo_url":"https://github.com/Gicherujoh/Zuri-Profile-Backend",
     "status":status
   })
