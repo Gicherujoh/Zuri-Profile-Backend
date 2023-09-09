@@ -24,7 +24,7 @@ function getCurrentDay(){
 }
 const today = getCurrentDay();
 const status= 200;
-app.get('/profile',(req,res)=>{
+app.get('/api',(req,res)=>{
   res.json({
     "slack_name":req.query.slack_name,
     "current_day":today,
