@@ -3,7 +3,8 @@ const app = express();
 app.use(express.json())
 require('dotenv').config()
 
-const currentUTCTime = new Date().toISOString().split(0,-5)+'Z';
+
+
 
 function getCurrentDay(){
   const  day= new Date();
@@ -15,6 +16,8 @@ function getCurrentDay(){
 const today = getCurrentDay();
 const status= 200;
 app.get('/api',(req,res)=>{
+  const now = new Date();
+  const currentUTCTime = now.toISOString().split('.')[0]+'Z';
   res.json({
     "slack_name":req.query.slack_name,
     "current_day":today,
