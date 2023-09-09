@@ -2,19 +2,19 @@ const express= require('express')
 const app = express();
 app.use(express.json())
 require('dotenv').config()
-function getCurrentUTCTimeWithValidation() {
-  const currentTime = new Date().getTime(); // Get current time in milliseconds
-  const twoSeconds = 2 * 1000; // Convert 2 seconds to milliseconds
 
-  // Check if the current time is within the validation window
-  if (Math.abs(currentTime - Date.now()) <= twoSeconds) {
-    const utcTime = new Date().toISOString(); // Get current time in ISO format (UTC)
-    return utcTime;
-  } else {
-    return "Time validation failed"; // Validation failed
-  }
+function getCurrentUTCTime() {
+  const now = new Date();
+  const minutes = now.getUTCMinutes();
+  const adjustedMinutes = minutes >= 2 ? minutes - 2 : 60 - (2 - minutes);
+  
+  const currentUTCTime = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), adjustedMinutes, now.getUTCSeconds());
+  
+  return currentUTCTime.toISOString();
 }
-const currentUTCTime = getCurrentUTCTimeWithValidation();
+
+const currentUTCTime = getCurrentUTCTime();
+
 function getCurrentDay(){
   const  day= new Date();
   const daysofweek= ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
