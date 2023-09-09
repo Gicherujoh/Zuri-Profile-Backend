@@ -3,7 +3,7 @@ const app = express();
 app.use(express.json())
 require('dotenv').config()
 
-const currentUTCTime = new Date().toISOString().split('.')[0]+'Z'
+const currentUTCTime = new Date().toISOString().split(0,-5)+'Z';
 
 function getCurrentDay(){
   const  day= new Date();
