@@ -3,17 +3,7 @@ const app = express();
 app.use(express.json())
 require('dotenv').config()
 
-function getCurrentUTCTime() {
-  const now = new Date();
-  const minutes = now.getUTCMinutes();
-  const adjustedMinutes = minutes >= 2 ? minutes - 2 : 60 - (2 - minutes);
-  
-  const currentUTCTime = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), adjustedMinutes, now.getUTCSeconds());
-  
-  return currentUTCTime.toISOString();
-}
-
-const currentUTCTime = getCurrentUTCTime();
+const currentUTCTime = new Date().toISOString().split('.')[0]+'Z'
 
 function getCurrentDay(){
   const  day= new Date();
@@ -38,3 +28,4 @@ app.get('/api',(req,res)=>{
 const port = process.env.Port;
 
 app.listen(port,()=>console.log(`Server running on port ${port}`))
+
